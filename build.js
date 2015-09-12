@@ -158,7 +158,8 @@ function buildlocale (source, locale) {
         i18n: require('./scripts/helpers/i18n.js'),
         changeloglink: require('./scripts/helpers/changeloglink.js'),
         strftime: require('./scripts/helpers/strftime.js'),
-        apidocslink: require('./scripts/helpers/apidocslink.js')
+        apidocslink: require('./scripts/helpers/apidocslink.js'),
+        summary: require('./scripts/helpers/summary.js')
       }
     }))
     .destination(path.join(__dirname, 'build', locale))
