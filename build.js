@@ -11,6 +11,7 @@ const markdown = require('metalsmith-markdown')
 const prism = require('metalsmith-prism')
 const stylus = require('metalsmith-stylus')
 const permalinks = require('metalsmith-permalinks')
+const paginate = require('metalsmith-paginate')
 const marked = require('marked')
 const path = require('path')
 const fs = require('fs')
@@ -112,6 +113,10 @@ function buildlocale (source, locale) {
         refer: false
       }
     }))
+    .use(paginate({
+      perPage: 15,
+      path: 'blog/page'
+    }))
     .use(markdown(markedOptions))
     .use(prism())
     .use(filterStylusPartials())
@@ -159,7 +164,8 @@ function buildlocale (source, locale) {
         changeloglink: require('./scripts/helpers/changeloglink.js'),
         strftime: require('./scripts/helpers/strftime.js'),
         apidocslink: require('./scripts/helpers/apidocslink.js'),
-        summary: require('./scripts/helpers/summary.js')
+        summary: require('./scripts/helpers/summary.js'),
+        limit: require('./scripts/helpers/limit.js')
       }
     }))
     .destination(path.join(__dirname, 'build', locale))
